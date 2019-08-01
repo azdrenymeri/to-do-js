@@ -12,14 +12,20 @@ const container = document.getElementById('container');
 const projectsContainer = document.getElementById('projects-container');
 const notesContainer = document.getElementById('notes-container');
 const detailsContainer = document.getElementById('details-container');
-
+projectsContainer.appendChild(projectsNode);
 const load = () => {
   navContainer.appendChild(nav);
-  projectsContainer.appendChild(projectsNode);
+  
   notesContainer.appendChild(notesList);
   detailsContainer.appendChild(noteDetails);
+ 
 }
 
 
+document.getElementById('saveProject').addEventListener('click',(event)=>{
+    const name=document.getElementById('projectName');
+    
 
-export { load, };
+})
+
+export { load };
