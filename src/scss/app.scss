@@ -1,5 +1,16 @@
-@import '~bootstrap/scss/bootstrap';
+@import "~bootstrap/scss/bootstrap";
 
+.noselect {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+.project-item:hover{
+  background-color: #6c757d;
+  color: white;
+}
 
 // Optional
 // @import "~bootstrap/scss/reboot";

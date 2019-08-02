@@ -6,22 +6,22 @@ const projectsNode = document.createElement("div");
 projectsNode.innerHTML = `
 <div class="row">
 <div class= "col-md-8">
-    <p>Projects Container</p> 
+    <p>Projects Container</p>
 </div>
-<div class= "col-md-3"> 
-    <button id= 'addProject' data-toggle="modal" data-target="#exampleModal" 
+<div class= "col-md-3">
+    <button id= 'addProject' data-toggle="modal" data-target="#exampleModal"
     class="btn btn-secondary btn-sm active" role="button" aria-pressed="true">Add</button>
 </div>
 
 </div>
-  <ul class="list-group" id="projects-list" >
-  <li class="list-group-item">Cras justo odio</li>
-  <li class="list-group-item">Dapibus ac facilisis in</li>
-  <li class="list-group-item active">Morbi leo risus</li>
-  <li class="list-group-item">Porta ac consectetur ac</li>
-  <li class="list-group-item">Vestibulum at eros</li>
+  <ul class="list-group noselect" id="projects-list" >
+  <li class="list-group-item project-item" data-key="0">Cras justo odio</li>
+  <li class="list-group-item project-item" data-key="1">Dapibus ac facilisis in</li>
+  <li class="list-group-item active project-item" data-key="2">Morbi leo risus</li>
+  <li class="list-group-item project-item" data-key="3">Porta ac consectetur ac</li>
+  <li class="list-group-item project-item" data-key="4">Vestibulum at eros</li>
 </ul>
-  
+
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -32,24 +32,28 @@ projectsNode.innerHTML = `
           </button>
         </div>
         <div class="modal-body">
-        Name: <input type="projectName"><br>
+        Name: <input type="text" id="project-name" placeholder="Type your project"><br>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button id="saveProject" type="button" class="btn btn-primary">Save changes</button>
+          <button id="saveProject" type="button" class="btn btn-primary" data-dismiss="modal">Create Project</button>
         </div>
       </div>
     </div>
   </div>
-`
-  
-  ;
+`;
 
 const createProject = (name) => {
 
-  //const projectsList = document.createElement("li");
-  projectsNode.innerHTML= projectsNode.innerHTML+'<li class="list-group-item">'+name+'</li>' ;
+  const projectList  = document.getElementById('projects-list');
+  const countNodes = projectList.childElementCount;
+  const newProjectItem = document.createElement("li");
 
+  newProjectItem.classList.add('list-group-item');
+  newProjectItem.setAttribute('data-key',countNodes);
+  newProjectItem.innerText = name;
+
+  projectList.appendChild(newProjectItem);
 }
 
 
