@@ -1,7 +1,4 @@
-
-
 const projectsNode = document.createElement("div");
-
 
 projectsNode.innerHTML = `
 <div class="row">
@@ -43,24 +40,16 @@ projectsNode.innerHTML = `
   </div>
 `;
 
-const createProject = (name) => {
-
-  const projectList  = document.getElementById('projects-list');
+const createProject = name => {
+  const projectList = document.getElementById("projects-list");
   const countNodes = projectList.childElementCount;
   const newProjectItem = document.createElement("li");
 
-  newProjectItem.classList.add('list-group-item');
-  newProjectItem.setAttribute('data-key',countNodes);
+  newProjectItem.classList.add("list-group-item");
+  newProjectItem.setAttribute("data-key", countNodes);
   newProjectItem.innerText = name;
 
   projectList.appendChild(newProjectItem);
-}
-
-
-
-
-
-
-
+};
 
 export { projectsNode, createProject };
