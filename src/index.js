@@ -1,7 +1,7 @@
 
-import { load } from './modules/pageLoader'
+import { init } from './modules/DOM'
 
-load();
+init();
 
 
 //

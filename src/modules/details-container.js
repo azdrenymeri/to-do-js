@@ -3,10 +3,10 @@ const noteDetails = document.createElement('div');
 
 noteDetails.innerHTML = `
 <div class="card">
-  <div class="card-header">
+  <div class="card-header" id="note-title">
     Title
   </div>
-  <div class="card-body">
+  <div class="card-body" id="note-description">
   Lorem ipsum dolor sit amet, consectetur adipisicing elit,
   sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
   Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
@@ -17,19 +17,19 @@ noteDetails.innerHTML = `
   <hr/>
     <div class="row">
       <div class="col-sm-6">
-<a href="#" class="btn btn-primary">Go somewhere</a>
+<a href="#" class="btn btn-primary" id="note-dueDate">DueDae</a>
        </div>
       <div class="col-sm-6">
-<a href="#" class="btn btn-primary">Go somewhere</a>
+<a href="#" class="btn btn-primary" id="note-priority">Priority</a>
       </div>
     </div>
     <br/>
     <div class="row">
       <div class="col-sm-6">
-<a href="#" class="btn btn-danger">Delte</a>
+<a href="#" class="btn btn-danger" id="delete-note-btn">Delete</a>
        </div>
       <div class="col-sm-6">
-<a href="#" class="btn btn-warning">Update</a>
+<a href="#" class="btn btn-warning" id="update-note-btn">Update</a>
       </div>
     </div>
 
@@ -38,4 +38,12 @@ noteDetails.innerHTML = `
 </div>
 `;
 
-export { noteDetails };
+const displayNote = (note) => {
+  document.getElementById('note-title').innerText = note.title;
+  document.getElementById('note-description').innerText = note.description;
+
+  //TODO you might need to change this thwo lines if we add different components
+  document.getElementById('note-dueDate').innerText = note.dueDate;
+  document.getElementById('note-priority').innerText = note.priority;
+}
+export { noteDetails,displayNote };

@@ -14,11 +14,13 @@ const projectsContainer = document.getElementById('projects-container');
 const notesContainer = document.getElementById('notes-container');
 const detailsContainer = document.getElementById('details-container');
 
+const projects = [];
+
 // Loading the DOM elements
 loadComponents();
 
-const load = () => {
 
+const init = () => {
 
 }
 
@@ -30,7 +32,8 @@ document.getElementById('saveProject').addEventListener('click',(event)=>{
 });
 
 
-let items = document.getElementsByClassName('p-item');
+const items = document.getElementsByClassName('p-item');
+
 for(const element of items){
 
         element.addEventListener('click',(event)=> {
@@ -42,12 +45,13 @@ for(const element of items){
 }
 
 let itemsNotes = document.getElementsByClassName('n-item');
+
 for(const elements of itemsNotes){
 
-        elements.addEventListener('click',(event)=> {
-            console.log('fucka')
+      elements.addEventListener('click',(event)=> {
+
            const activeNote = event.target.parentNode.parentNode.getElementsByClassName('active')[0];
-           console.log('fuck');
+
            console.log(activeNote);
            activeNote.classList.remove('active');
           event.target.parentNode.classList.add("active");
@@ -65,17 +69,4 @@ document.getElementById('saveNote').addEventListener('click', (event)=>{
 
 });
 
-
-
-
-
-// document.getElementById('notes-list').addEventListener('click',(event)=>{
-
-//   const activeNote = event.target.parentNode.getElementsByClassName('active')[0];
-//   activeNote.classList.remove('active');
-//   event.target.classList.add('active');
-
-// });
-
-
-export { load };
+export { init };

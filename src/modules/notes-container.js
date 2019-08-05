@@ -3,12 +3,11 @@ const notesList = document.createElement("div");
 notesList.innerHTML = `
 <div class="row">
               <div class= "col-md-8">
-                  <p>Notes Container</p> 
+                  <p>Notes Container</p>
               </div>
-              <div class= "col-md-3"> 
+              <div class= "col-md-3">
               <button id= 'addNote' data-toggle="modal" data-target="#exampleModal2" class="btn btn-secondary btn-sm active" role="button" aria-pressed="true">Add</button>
               </div>
-  
           </div>
           </div>
           <ul class="list-group noselect" id="notes-list" >
@@ -29,7 +28,33 @@ notesList.innerHTML = `
           </button>
         </div>
         <div class="modal-body">
-        Name: <input type="text" id="note-name" placeholder="Type your note"><br>
+          <!-- title -->
+          <div class="form-group">
+            <label for="note-name">Note</label>
+            <input type="text" class="form-control" id="note-name"  placeholder="Type your note">
+          </div>
+          <!-- description -->
+          <div class="form-group">
+            <label for="description-area">Description</label>
+            <textarea class="form-control" id="description-area" rows="3"></textarea>
+          </div>
+          <!-- due date -->
+          <div class="form-group">
+            <label for="dueDate">Due Date</label>
+            <input type="date" class="form-control" id="dueDate" >
+          </div>
+
+          <!-- priority -->
+          <div class="form-group">
+            <label for="exampleFormControlSelect1">Priority</label>
+            <select class="form-control" id="exampleFormControlSelect1">
+              <option value="LOW">Low</option>
+                <option value="MEDUM">Medium</option>
+                <option value="HIGH">High</option>
+                <option value="URGENT">Urgent</option>
+              </select>
+          </div>
+
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -39,17 +64,17 @@ notesList.innerHTML = `
     </div>
   </div>
 `;
+
 // both note and project need to be connected to their objects?
-const createNote = name => {
+const createNote = (name) => {
     const noteList = document.getElementById("notes-list");
     const countNodes = noteList.childElementCount;
     const newNoteItem = document.createElement("li");
-  
+
     newNoteItem.classList.add("list-group-item");
     newNoteItem.setAttribute("data-key", countNodes);
     newNoteItem.innerText = name;
-  
     noteList.appendChild(newNoteItem);
   };
-  
+
   export { notesList, createNote };

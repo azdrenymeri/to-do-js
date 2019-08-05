@@ -29,7 +29,11 @@ projectsNode.innerHTML = `
           </button>
         </div>
         <div class="modal-body">
-        Name: <input type="text" id="project-name" placeholder="Type your project"><br>
+
+        <div class="form-group">
+    <label for="exampleInputEmail1">Project</label>
+      <input type="text" class="form-control" id="project-name"  placeholder="Enter project">
+      </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
