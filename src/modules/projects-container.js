@@ -12,11 +12,11 @@ projectsNode.innerHTML = `
 
 </div>
   <ul class="list-group noselect" id="projects-list" >
-  <li class="list-group-item project-item" data-key="0">Cras justo odio</li>
-  <li class="list-group-item project-item" data-key="1">Dapibus ac facilisis in</li>
-  <li class="list-group-item active project-item" data-key="2">Morbi leo risus</li>
-  <li class="list-group-item project-item" data-key="3">Porta ac consectetur ac</li>
-  <li class="list-group-item project-item" data-key="4">Vestibulum at eros</li>
+  <li class="list-group-item project-item" data-key="0"><div class="p-item">Cras justo odio</div></li>
+  <li class="list-group-item project-item" data-key="1"><div class="p-item">Dapibus ac facilisis in</div></li>
+  <li class="list-group-item active project-item" data-key="2"><div class="p-item">Morbi leo risus</div></li>
+  <li class="list-group-item project-item" data-key="3"><div class="p-item">Porta ac consectetur ac</div></li>
+  <li class="list-group-item project-item" data-key="4"><div class="p-item">Vestibulum at eros</div></li>
 </ul>
 
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

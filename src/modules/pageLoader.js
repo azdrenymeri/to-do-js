@@ -5,6 +5,7 @@ import { nav } from './header';
 import { projectsNode,createProject } from './projects-container';
 import { notesList, createNote } from './notes-container';
 import { noteDetails } from './details-container';
+import { loadComponents } from './main-container';
 
 const navContainer = document.getElementById('navigation-container');
 const body = document.getElementById('app');
@@ -12,13 +13,12 @@ const container = document.getElementById('container');
 const projectsContainer = document.getElementById('projects-container');
 const notesContainer = document.getElementById('notes-container');
 const detailsContainer = document.getElementById('details-container');
-projectsContainer.appendChild(projectsNode);
-notesContainer.appendChild(notesList);
-const load = () => {
-  navContainer.appendChild(nav);
 
-  
-  detailsContainer.appendChild(noteDetails);
+// Loading the DOM elements
+loadComponents();
+
+const load = () => {
+
 
 }
 
@@ -29,14 +29,18 @@ document.getElementById('saveProject').addEventListener('click',(event)=>{
      name.value ='';
 });
 
-document.getElementById('projects-list').addEventListener('click',(event)=>{
 
-  const activeProject = event.target.parentNode.getElementsByClassName('active')[0];
-    activeProject.classList.remove('active');
+let items = document.getElementsByClassName('p-item');
+for(const element of items){
 
-  event.target.classList.add('active');
+        element.addEventListener('click',(event)=> {
+           const activeProject = event.target.parentNode.parentNode.getElementsByClassName('active')[0];
+           activeProject.classList.remove('active');
+          event.target.parentNode.classList.add("active");
 
-});
+        });
+}
+
 
 document.getElementById('saveNote').addEventListener('click', (event)=>{
 
@@ -46,6 +50,10 @@ document.getElementById('saveNote').addEventListener('click', (event)=>{
 
 
 });
+
+
+
+
 
 document.getElementById('notes-list').addEventListener('click',(event)=>{
 
