@@ -22,7 +22,7 @@ notesList.innerHTML = `
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Note title</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Create note</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -40,14 +40,14 @@ notesList.innerHTML = `
           </div>
           <!-- due date -->
           <div class="form-group">
-            <label for="dueDate">Due Date</label>
-            <input type="date" class="form-control" id="dueDate" >
+            <label for="due-date">Due Date</label>
+            <input type="date" class="form-control" id="due-date" >
           </div>
 
           <!-- priority -->
           <div class="form-group">
-            <label for="exampleFormControlSelect1">Priority</label>
-            <select class="form-control" id="exampleFormControlSelect1">
+            <label for="note-priority">Priority</label>
+            <select class="form-control" id="note-priority">
               <option value="LOW">Low</option>
                 <option value="MEDUM">Medium</option>
                 <option value="HIGH">High</option>
@@ -66,7 +66,7 @@ notesList.innerHTML = `
 `;
 
 // both note and project need to be connected to their objects?
-const createNote = (name) => {
+const addNote = (name) => {
     const noteList = document.getElementById("notes-list");
     const countNodes = noteList.childElementCount;
     const newNoteItem = document.createElement("li");
@@ -77,4 +77,4 @@ const createNote = (name) => {
     noteList.appendChild(newNoteItem);
   };
 
-  export { notesList, createNote };
+  export { notesList, addNote };

@@ -44,7 +44,7 @@ projectsNode.innerHTML = `
   </div>
 `;
 
-const createProject = name => {
+const addProject = name => {
   const projectList = document.getElementById("projects-list");
   const countNodes = projectList.childElementCount;
   const newProjectItem = document.createElement("li");
@@ -56,4 +56,4 @@ const createProject = name => {
   projectList.appendChild(newProjectItem);
 };
 
-export { projectsNode, createProject };
+export { projectsNode, addProject };

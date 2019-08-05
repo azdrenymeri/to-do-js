@@ -45,5 +45,7 @@ const displayNote = (note) => {
   //TODO you might need to change this thwo lines if we add different components
   document.getElementById('note-dueDate').innerText = note.dueDate;
   document.getElementById('note-priority').innerText = note.priority;
+
+  // TODO: Bassed on the priority of the note set the color :default primary, warning or danger
 }
 export { noteDetails,displayNote };

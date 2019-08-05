@@ -2,8 +2,8 @@ import 'bootstrap';
 import './../scss/app.scss';
 
 import { nav } from './header';
-import { projectsNode,createProject } from './projects-container';
-import { notesList, createNote } from './notes-container';
+import { projectsNode,addProject } from './projects-container';
+import { notesList, addNote } from './notes-container';
 import { noteDetails } from './details-container';
 import { loadComponents } from './main-container';
 
@@ -14,7 +14,8 @@ const projectsContainer = document.getElementById('projects-container');
 const notesContainer = document.getElementById('notes-container');
 const detailsContainer = document.getElementById('details-container');
 
-const projects = [];
+// Data of the application
+const projectsData = [];
 
 // Loading the DOM elements
 loadComponents();
@@ -24,6 +25,7 @@ const init = () => {
 
 }
 
+// listeners
 
 document.getElementById('saveProject').addEventListener('click',(event)=>{
      const name = document.getElementById('project-name');
@@ -31,9 +33,8 @@ document.getElementById('saveProject').addEventListener('click',(event)=>{
      name.value ='';
 });
 
-
+//changing the active status to the projects and notes
 const items = document.getElementsByClassName('p-item');
-
 for(const element of items){
 
         element.addEventListener('click',(event)=> {
@@ -43,30 +44,46 @@ for(const element of items){
           console.log(ActiveProject);
         });
 }
-
-let itemsNotes = document.getElementsByClassName('n-item');
-
+const itemsNotes = document.getElementsByClassName('n-item');
 for(const elements of itemsNotes){
 
       elements.addEventListener('click',(event)=> {
-
            const activeNote = event.target.parentNode.parentNode.getElementsByClassName('active')[0];
-
-           console.log(activeNote);
            activeNote.classList.remove('active');
           event.target.parentNode.classList.add("active");
-
         });
 }
 
+//adding a project and a note
+document.getElementById('saveProject').addEventListener('click',(event) => {
+  const name = document.getElementById('project-name');
+  const project = new Project(name.value);
+
+    // TODO: create a method that checks if this project name is already on the list
+    projectsData.push(project);
+    addProject(name.value);
+    name.value = '';
+});
 
 document.getElementById('saveNote').addEventListener('click', (event)=>{
 
   const name = document.getElementById('note-name');
-  createNote(name.value); // need to send the id of project to add it to projets note array
+  const description  = document.getElementById('description-area');
+  const dueDate = document.getElementById('due-date');
+  const priority = document.getElementById('note-priority');
+
+  const note = new Node(name,description,dueDate,priority);
+  //display it on the details panel
+  displayNote(note)
+  addNote(name.value);
+
+  //Push it on the correct
+  
+
+// Cleanup
   name.value='';
-
-
+  description.value = '';
 });
+
 
 export { init };
