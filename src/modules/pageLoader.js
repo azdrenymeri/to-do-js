@@ -37,6 +37,20 @@ for(const element of items){
            const activeProject = event.target.parentNode.parentNode.getElementsByClassName('active')[0];
            activeProject.classList.remove('active');
           event.target.parentNode.classList.add("active");
+          console.log(ActiveProject);
+        });
+}
+
+let itemsNotes = document.getElementsByClassName('n-item');
+for(const elements of itemsNotes){
+
+        elements.addEventListener('click',(event)=> {
+            console.log('fucka')
+           const activeNote = event.target.parentNode.parentNode.getElementsByClassName('active')[0];
+           console.log('fuck');
+           console.log(activeNote);
+           activeNote.classList.remove('active');
+          event.target.parentNode.classList.add("active");
 
         });
 }
@@ -55,13 +69,13 @@ document.getElementById('saveNote').addEventListener('click', (event)=>{
 
 
 
-document.getElementById('notes-list').addEventListener('click',(event)=>{
+// document.getElementById('notes-list').addEventListener('click',(event)=>{
 
-  const activeNote = event.target.parentNode.getElementsByClassName('active')[0];
-  activeNote.classList.remove('active');
-  event.target.classList.add('active');
+//   const activeNote = event.target.parentNode.getElementsByClassName('active')[0];
+//   activeNote.classList.remove('active');
+//   event.target.classList.add('active');
 
-});
+// });
 
 
 export { load };

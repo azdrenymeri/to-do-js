@@ -12,11 +12,11 @@ notesList.innerHTML = `
           </div>
           </div>
           <ul class="list-group noselect" id="notes-list" >
-          <li class="list-group-item note-item" data-key="0">Cras justo odio</li>
-          <li class="list-group-item note-item" data-key="1">Dapibus ac facilisis in</li>
-          <li class="list-group-item active note-item" data-key="2">Morbi leo risus</li>
-          <li class="list-group-item note-item" data-key="3">Porta ac consectetur ac</li>
-          <li class="list-group-item note-item" data-key="4">Vestibulum at eros</li>
+          <li class="list-group-item note-item" data-key="0"><div class="n-item">Cras justo odio</div></li>
+          <li class="list-group-item note-item" data-key="1"><div class="n-item">Cras justo odio</div></li>
+          <li class="list-group-item active note-item" data-key="2"><div class="n-item">Cras justo odio</div></li>
+          <li class="list-group-item note-item" data-key="3"><div class="n-item">Cras justo odio</div></li>
+          <li class="list-group-item note-item" data-key="4"><div class="n-item">Cras justo odio</div></li>
         </ul>
 
         <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
