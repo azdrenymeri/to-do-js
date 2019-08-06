@@ -77,7 +77,8 @@ const renderNotes = (project) => {
   //clean other notes
   noteList.innerHTML = '';
   
-    for (var note in project.notes) {
+    for (const note of project.notes) {
+      console.log(note);
       const countNodes = noteList.childElementCount;
       const newNoteItem = document.createElement('li');
       newNoteItem.classList.add('list-group-item','note-item');
