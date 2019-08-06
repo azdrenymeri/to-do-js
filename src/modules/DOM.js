@@ -4,9 +4,10 @@ import { Project } from './project';
 import { Note } from './note';
 import { nav } from './header';
 import { projectsNode,addProject } from './projects-container';
-import { notesList, addNote } from './notes-container';
+import { notesList, addNote, renderNotes } from './notes-container';
 import { noteDetails,displayNote } from './details-container';
 import { loadComponents } from './main-container';
+
 
 // Loading the DOM elements
 loadComponents();
@@ -27,7 +28,7 @@ const init = () => {
 
 // listeners
 
-//adding a project and a note
+//modal listener for creating projects
 document.getElementById('saveProject').addEventListener('click',(event) => {
   const name = document.getElementById('project-name');
   const newProject = new Project(name.value);
@@ -45,6 +46,10 @@ projectsList.addEventListener('click',(event) => {
     activeProject.classList.remove('active')
   }
   event.target.classList.add('active');
+  const selectedIndex = new Number(event.target.getAttribute('data-key'));
+  const selectedProject = projectsData[selectedIndex];
+    //rendering the notes
+    renderNotes(selectedProject)
 });
 
 notes.addEventListener('click',(event)=> {
@@ -70,7 +75,7 @@ notes.addEventListener('click',(event)=> {
 });
 
 
-const noteSaveHandler = (event) => {
+document.getElementById('saveNote').addEventListener('click',(event)=>{
   const name = document.getElementById('note-name').value;
   const description  = document.getElementById('description-area').value;
   const dueDate = document.getElementById('due-date').value;
@@ -93,16 +98,7 @@ const noteSaveHandler = (event) => {
    } else {
      alert('You should select a project');
    }
-
-
-// Cleanup
-  // name ='';
-  // description = '';
-  // dueDate = '';
-  // priority = '';
-}
-
-document.getElementById('saveNote').addEventListener('click', noteSaveHandler);
+});
 
 
 
