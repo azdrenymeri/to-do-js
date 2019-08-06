@@ -19,9 +19,9 @@ const detailsContainer = document.getElementById('details-container');
 
 // Data of the application
 const projectsData = [];
-
-
-
+const np = new Project("Default");
+projectsData.push(np);
+addProject("Default");
 const init = () => {
 
 }
@@ -40,17 +40,52 @@ document.getElementById('saveProject').addEventListener('click',(event) => {
 
 });
 
+// here is active button
 projectsList.addEventListener('click',(event) => {
   const activeProject = event.target.parentNode.getElementsByClassName('active')[0];
   if(activeProject){
     activeProject.classList.remove('active')
   }
+  
   event.target.classList.add('active');
   const selectedIndex = new Number(event.target.getAttribute('data-key'));
   const selectedProject = projectsData[selectedIndex];
     //rendering the notes
-    renderNotes(selectedProject)
+    console.log('vitals')
+    console.log(selectedProject);
+    console.log(selectedIndex);
+    renderNotes(selectedProject);
 });
+// delete
+document.getElementById('delete-note-btn').addEventListener('click',(event) => {
+  const activeNote = notes.getElementsByClassName('active')[0];
+  const i =activeNote.getAttribute('data-key');
+  const activeProject = projectsList.getElementsByClassName('active')[0];
+  const index = activeProject.getAttribute('data-key');
+  projectsData[index].notes.splice(i,1);
+  renderNotes(activeProject);
+
+});
+// update
+document.getElementById('update-note-btn').addEventListener('click',(event) => {
+  const activeNote = notes.getElementsByClassName('active')[0];
+  const i =activeNote.getAttribute('data-key');
+  const activeProject = projectsList.getElementsByClassName('active')[0];
+  const index = activeProject.getAttribute('data-key');
+  const changenote= projectsData[index].notes[i]
+  
+  changenote.title = document.getElementById('note-title').value;
+  changenote.description  = document.getElementById('note-description').value;
+  changenote.dueDate = document.getElementById('due-date-details').value;
+  changenote.priority = document.getElementById('note-priority-details').value;
+  console.log(changenote);
+  console.log(projectsData[index].notes[i]);
+  projectsData[index].notes[i]=changenote;
+  renderNotes(activeProject);
+  
+
+});
+
 
 notes.addEventListener('click',(event)=> {
   const activeNote = event.target.parentNode.getElementsByClassName('active')[0];

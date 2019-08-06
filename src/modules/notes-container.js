@@ -76,15 +76,17 @@ const renderNotes = (project) => {
   const noteList = document.getElementById('notes-list');
   //clean other notes
   noteList.innerHTML = '';
-
-  for (let note of project.notes) {
-    const countNodes = noteList.childElementCount;
-    const newNoteItem = document.createElement('li');
-    newNoteItem.classList.add('list-group-item','note-item');
-    newNoteItem.setAttribute('data-key', countNodes);
-    newNoteItem.innerText = note.title;
-    noteList.appendChild(newNoteItem);
-  }
+  
+    for (var note in project.notes) {
+      const countNodes = noteList.childElementCount;
+      const newNoteItem = document.createElement('li');
+      newNoteItem.classList.add('list-group-item','note-item');
+      newNoteItem.setAttribute('data-key', countNodes);
+      newNoteItem.innerText = note.title;
+      noteList.appendChild(newNoteItem);
+    }
+  
+  
 
 }
 

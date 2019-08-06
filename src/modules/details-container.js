@@ -3,18 +3,13 @@ const noteDetails = document.createElement('div');
 
 noteDetails.innerHTML = `
 <div class="card">
-  <div class="card-header" id="note-title">
-    Title
+  <div class="card-header" >
+  <input type="text" class="form-control" id="note-title"  placeholder="Title">
+    
   </div>
   <div class="card-body">
-  <div id="note-description">
-  Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-  sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-  nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-  reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-  pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
-  qui officia deserunt mollit anim id est laborum.
+  <div >
+  <input type="text" class="form-control" id="note-description"  placeholder="Description">
   </div>
   <hr/>
     <div class="row">
@@ -52,8 +47,8 @@ noteDetails.innerHTML = `
 `;
 
 const displayNote = (note) => {
-  document.getElementById('note-title').innerText = note.title;
-  document.getElementById('note-description').innerText = note.description;
+  document.getElementById('note-title').value = note.title;
+  document.getElementById('note-description').value = note.description;
 
   //TODO you might need to change this thwo lines if we add different components
   document.getElementById('due-date-details').value = note.dueDate;

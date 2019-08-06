@@ -50,10 +50,27 @@ const addProject = (name) => {
   if(countNodes == 0){
     newProjectItem.classList.add('active');
   }
+  const button = document.createElement("paragraph");
+  button.innerHTML = `<button type="button"  id="deleteProject" class="close"
+   aria-label="Close">
+  <span style="
+  float: right;
+  background: inherit;
+  border: none;
+" aria-hidden="true">&times;</span>
+</button>`;
   newProjectItem.setAttribute('data-key', countNodes);
   newProjectItem.innerText = name;
-
+  newProjectItem.appendChild(button);
   projectList.appendChild(newProjectItem);
+
+  document.getElementById('deleteProject').addEventListener('click',(event) => {
+    const id = event.target.parentNode.parentNode.parentNode.getAttribute('data-key');
+    console.log(id);
+    console.log('fuck')
+    
+  
+  });
 };
 
 export { projectsNode, addProject };
