@@ -3,7 +3,7 @@ import './../scss/app.scss';
 import { Project } from './project';
 import { Note } from './note';
 import { nav } from './header';
-import { projectsNode,addProject } from './projects-container';
+import { projectsNode,addProject, renderProjects } from './projects-container';
 import { notesList, addNote, renderNotes } from './notes-container';
 import { noteDetails,displayNote } from './details-container';
 import { loadComponents } from './main-container';
@@ -84,13 +84,12 @@ document.getElementById('update-note-btn').addEventListener('click',(event) => {
 });
 
 //deleting project
-document.getElementById('delete-note-btn').addEventListener('click',(event) => {
-  const activeNote = notes.getElementsByClassName('active')[0];
-  const i =activeNote.getAttribute('data-key');
+document.getElementById('deleteProject').addEventListener('click',(event) => {
   const activeProject = projectsList.getElementsByClassName('active')[0];
   const index = activeProject.getAttribute('data-key');
-  projectsData[index].notes.splice(i,1);
-  renderNotes(activeProject);
+  console.log('hello there')
+  projectsData.splice(index,1);
+  renderProjects(projectsData);
 
 });
 

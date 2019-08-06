@@ -50,24 +50,37 @@ const addProject = (name) => {
   if(countNodes == 0){
     newProjectItem.classList.add('active');
   }
-  const button = document.createElement("paragraph");
-  button.innerHTML = `<button type="button"  id="deleteProject" class="close"
-   aria-label="Close">
-  <span style="
-  float: right;
-  background: inherit;
-  border: none;
-" aria-hidden="true">&times;</span>
-</button>`;
+  
   newProjectItem.setAttribute('data-key', countNodes);
   newProjectItem.innerText = name;
-  newProjectItem.appendChild(button);
-  projectList.appendChild(newProjectItem);
+  
 
-  document.getElementById('deleteProject').addEventListener('click',(event) => {
-    const id = event.target.parentNode.parentNode.parentNode.getAttribute('data-key');
-    
-  });
+  
+  projectList.appendChild(newProjectItem);
 };
 
-export { projectsNode, addProject };
+const renderProjects = (projects) => {
+  const projectsNode = document.getElementById('projects-list');
+  //clean other projects
+  projectsNode.innerHTML = '';
+  
+
+    for (const i in projects) {
+      const projectList = document.getElementById('projects-list');
+      const countNodes = projectList.childElementCount;
+      const countProjects = projectsNode.childElementCount;
+      const newProjectItem = document.createElement('li');
+
+      if(countNodes == 0){
+        newProjectItem.classList.add('active');
+      }
+      newProjectItem.classList.add('list-group-item','note-item');
+      newProjectItem.setAttribute('data-key', countProjects);
+      newProjectItem.innerText = projects[i].name;
+      projectsNode.appendChild(newProjectItem);
+    }
+  
+
+}
+
+export { projectsNode, addProject, renderProjects };

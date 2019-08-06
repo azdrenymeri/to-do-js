@@ -33,17 +33,20 @@ noteDetails.innerHTML = `
     </div>
     <br/>
     <div class="row">
+    <hr/>
       <div class="col-sm-6">
-        <a href="#" class="btn btn-danger" id="delete-note-btn">Delete</a>
+        <a href="#" class="btn btn-danger" id="delete-note-btn">Delete Note</a>
        </div>
       <div class="col-sm-6">
-        <a href="#" class="btn btn-warning" id="update-note-btn">Update</a>
+        <a href="#" class="btn btn-warning" id="update-note-btn">Update Note</a>
       </div>
     </div>
 
   </div>
-
+  
+  <a href="#" id="deleteProject" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Delete Project</a>
 </div>
+
 `;
 
 const displayNote = (note) => {
