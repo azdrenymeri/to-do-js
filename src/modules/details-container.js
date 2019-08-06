@@ -17,19 +17,30 @@ noteDetails.innerHTML = `
   <hr/>
     <div class="row">
       <div class="col-sm-6">
-<a href="#" class="btn btn-primary" id="note-dueDate">DueDae</a>
+      <div class="form-group">
+        <label for="due-date-details">Due Date</label>
+        <input type="date" class="form-control" id="due-date-details">
+      </div>
        </div>
       <div class="col-sm-6">
-<a href="#" class="btn btn-primary" id="note-priority">Priority</a>
+      <div class="form-group">
+        <label for="note-priority-details">Priority</label>
+        <select class="form-control" id="note-priority-details">
+          <option value="LOW">Low</option>
+            <option value="MEDUM">Medium</option>
+            <option value="HIGH">High</option>
+            <option value="URGENT">Urgent</option>
+          </select>
+      </div>
       </div>
     </div>
     <br/>
     <div class="row">
       <div class="col-sm-6">
-<a href="#" class="btn btn-danger" id="delete-note-btn">Delete</a>
+        <a href="#" class="btn btn-danger" id="delete-note-btn">Delete</a>
        </div>
       <div class="col-sm-6">
-<a href="#" class="btn btn-warning" id="update-note-btn">Update</a>
+        <a href="#" class="btn btn-warning" id="update-note-btn">Update</a>
       </div>
     </div>
 

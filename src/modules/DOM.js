@@ -1,6 +1,6 @@
 import 'bootstrap';
 import './../scss/app.scss';
-
+import { Project } from './project';
 import { nav } from './header';
 import { projectsNode,addProject } from './projects-container';
 import { notesList, addNote } from './notes-container';
@@ -27,10 +27,15 @@ const init = () => {
 
 // listeners
 
-document.getElementById('saveProject').addEventListener('click',(event)=>{
-     const name = document.getElementById('project-name');
-     createProject(name.value);
-     name.value ='';
+//adding a project and a note
+document.getElementById('saveProject').addEventListener('click',(event) => {
+  const name = document.getElementById('project-name');
+  const newProject = new Project(name.value);
+
+    // TODO: create a method that checks if this project name is already on the list
+    projectsData.push(newProject);
+    addProject(name.value);
+    name.value = '';
 });
 
 //changing the active status to the projects and notes
@@ -54,16 +59,7 @@ for(const elements of itemsNotes){
         });
 }
 
-//adding a project and a note
-document.getElementById('saveProject').addEventListener('click',(event) => {
-  const name = document.getElementById('project-name');
-  const project = new Project(name.value);
 
-    // TODO: create a method that checks if this project name is already on the list
-    projectsData.push(project);
-    addProject(name.value);
-    name.value = '';
-});
 
 document.getElementById('saveNote').addEventListener('click', (event)=>{
 
@@ -78,7 +74,7 @@ document.getElementById('saveNote').addEventListener('click', (event)=>{
   addNote(name.value);
 
   //Push it on the correct
-  
+
 
 // Cleanup
   name.value='';
