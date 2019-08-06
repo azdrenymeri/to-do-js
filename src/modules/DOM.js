@@ -51,9 +51,7 @@ projectsList.addEventListener('click',(event) => {
   const selectedIndex = new Number(event.target.getAttribute('data-key'));
   const selectedProject = projectsData[selectedIndex];
     //rendering the notes
-    console.log('vitals')
-    console.log(selectedProject);
-    console.log(selectedIndex);
+    
     renderNotes(selectedProject);
 });
 // delete
@@ -78,11 +76,21 @@ document.getElementById('update-note-btn').addEventListener('click',(event) => {
   changenote.description  = document.getElementById('note-description').value;
   changenote.dueDate = document.getElementById('due-date-details').value;
   changenote.priority = document.getElementById('note-priority-details').value;
-  console.log(changenote);
-  console.log(projectsData[index].notes[i]);
-  projectsData[index].notes[i]=changenote;
-  renderNotes(activeProject);
   
+  projectsData[index].notes[i]=changenote;
+  renderNotes(projectsData[index]);
+  
+
+});
+
+//deleting project
+document.getElementById('delete-note-btn').addEventListener('click',(event) => {
+  const activeNote = notes.getElementsByClassName('active')[0];
+  const i =activeNote.getAttribute('data-key');
+  const activeProject = projectsList.getElementsByClassName('active')[0];
+  const index = activeProject.getAttribute('data-key');
+  projectsData[index].notes.splice(i,1);
+  renderNotes(activeProject);
 
 });
 

@@ -76,14 +76,15 @@ const renderNotes = (project) => {
   const noteList = document.getElementById('notes-list');
   //clean other notes
   noteList.innerHTML = '';
-  
-    for (const note of project.notes) {
-      console.log(note);
+    
+
+    for (const note in project.notes) {
+      
       const countNodes = noteList.childElementCount;
       const newNoteItem = document.createElement('li');
       newNoteItem.classList.add('list-group-item','note-item');
       newNoteItem.setAttribute('data-key', countNodes);
-      newNoteItem.innerText = note.title;
+      newNoteItem.innerText = project.notes[note].title;
       noteList.appendChild(newNoteItem);
     }
   

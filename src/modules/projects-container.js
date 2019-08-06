@@ -66,10 +66,7 @@ const addProject = (name) => {
 
   document.getElementById('deleteProject').addEventListener('click',(event) => {
     const id = event.target.parentNode.parentNode.parentNode.getAttribute('data-key');
-    console.log(id);
-    console.log('fuck')
     
-  
   });
 };
 
