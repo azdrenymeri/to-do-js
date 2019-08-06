@@ -3,7 +3,7 @@ const projectsNode = document.createElement("div");
 projectsNode.innerHTML = `
 <div class="row">
 <div class= "col-md-8">
-    <p>Projects Container</p>
+    <p class="text-monospace">Projects</p>
 </div>
 <div class= "col-md-3">
     <button id= 'addProject' data-toggle="modal" data-target="#exampleModal"
@@ -12,11 +12,7 @@ projectsNode.innerHTML = `
 
 </div>
   <ul class="list-group noselect" id="projects-list" >
-  <!-- <li class="list-group-item project-item" data-key="0"><div class="p-item">Cras justo odio</div></li>
-  <li class="list-group-item project-item" data-key="1"><div class="p-item">Dapibus ac facilisis in</div></li>
-  <li class="list-group-item active project-item" data-key="2"><div class="p-item">Morbi leo risus</div></li>
-  <li class="list-group-item project-item" data-key="3"><div class="p-item">Porta ac consectetur ac</div></li>
-  <li class="list-group-item project-item" data-key="4"><div class="p-item">Vestibulum at eros</div></li> -->
+  <!-- <li class="list-group-item project-item active" data-key="0">Sample Project</li> -->
 </ul>
 
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -41,17 +37,20 @@ projectsNode.innerHTML = `
         </div>
       </div>
     </div>
-  </div>
-`;
+  </div> `;
 
 const addProject = (name) => {
-  
-  const projectList = document.getElementById("projects-list");
-  const countNodes = projectList.childElementCount;
-  const newProjectItem = document.createElement("li");
 
-  newProjectItem.classList.add("list-group-item");
-  newProjectItem.setAttribute("data-key", countNodes);
+  const projectList = document.getElementById('projects-list');
+  const countNodes = projectList.childElementCount;
+
+  const newProjectItem = document.createElement('li');
+  newProjectItem.classList.add('list-group-item','project-item');
+  // we have only one project so set it to active
+  if(countNodes == 0){
+    newProjectItem.classList.add('active');
+  }
+  newProjectItem.setAttribute('data-key', countNodes);
   newProjectItem.innerText = name;
 
   projectList.appendChild(newProjectItem);

@@ -6,7 +6,8 @@ noteDetails.innerHTML = `
   <div class="card-header" id="note-title">
     Title
   </div>
-  <div class="card-body" id="note-description">
+  <div class="card-body">
+  <div id="note-description">
   Lorem ipsum dolor sit amet, consectetur adipisicing elit,
   sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
   Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
@@ -14,6 +15,7 @@ noteDetails.innerHTML = `
   reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
   pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
   qui officia deserunt mollit anim id est laborum.
+  </div>
   <hr/>
     <div class="row">
       <div class="col-sm-6">
@@ -54,8 +56,8 @@ const displayNote = (note) => {
   document.getElementById('note-description').innerText = note.description;
 
   //TODO you might need to change this thwo lines if we add different components
-  document.getElementById('note-dueDate').innerText = note.dueDate;
-  document.getElementById('note-priority').innerText = note.priority;
+  document.getElementById('due-date-details').value = note.dueDate;
+  document.getElementById('note-priority-details').value = note.priority;
 
   // TODO: Bassed on the priority of the note set the color :default primary, warning or danger
 }

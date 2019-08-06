@@ -4,7 +4,6 @@ import { notesList, createNote } from './notes-container';
 import { noteDetails } from './details-container';
 
 const navContainer = document.getElementById('navigation-container');
-const body = document.getElementById('app');
 const container = document.getElementById('container');
 const projectsContainer = document.getElementById('projects-container');
 const notesContainer = document.getElementById('notes-container');
@@ -21,6 +20,5 @@ const detailsContainer = document.getElementById('details-container');
   }
 
 
-
-export {loadComponents,navContainer,body,container,projectsContainer,
+export {loadComponents,navContainer,container,projectsContainer,
           notesContainer,detailsContainer};

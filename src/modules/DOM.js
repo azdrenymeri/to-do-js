@@ -1,24 +1,24 @@
 import 'bootstrap';
 import './../scss/app.scss';
 import { Project } from './project';
+import { Note } from './note';
 import { nav } from './header';
 import { projectsNode,addProject } from './projects-container';
 import { notesList, addNote } from './notes-container';
-import { noteDetails } from './details-container';
+import { noteDetails,displayNote } from './details-container';
 import { loadComponents } from './main-container';
 
-const navContainer = document.getElementById('navigation-container');
-const body = document.getElementById('app');
-const container = document.getElementById('container');
-const projectsContainer = document.getElementById('projects-container');
-const notesContainer = document.getElementById('notes-container');
+// Loading the DOM elements
+loadComponents();
+
+const projectsList = document.getElementById('projects-list');
+const notes = document.getElementById('notes-list');
+
 const detailsContainer = document.getElementById('details-container');
 
 // Data of the application
 const projectsData = [];
 
-// Loading the DOM elements
-loadComponents();
 
 
 const init = () => {
@@ -36,50 +36,76 @@ document.getElementById('saveProject').addEventListener('click',(event) => {
     projectsData.push(newProject);
     addProject(name.value);
     name.value = '';
+
 });
 
-//changing the active status to the projects and notes
-const items = document.getElementsByClassName('p-item');
-for(const element of items){
+projectsList.addEventListener('click',(event) => {
+  const activeProject = event.target.parentNode.getElementsByClassName('active')[0];
+  if(activeProject){
+    activeProject.classList.remove('active')
+  }
+  event.target.classList.add('active');
+});
 
-        element.addEventListener('click',(event)=> {
-           const activeProject = event.target.parentNode.parentNode.getElementsByClassName('active')[0];
-           activeProject.classList.remove('active');
-          event.target.parentNode.classList.add("active");
-          console.log(ActiveProject);
-        });
-}
-const itemsNotes = document.getElementsByClassName('n-item');
-for(const elements of itemsNotes){
+notes.addEventListener('click',(event)=> {
+  const activeNote = event.target.parentNode.getElementsByClassName('active')[0];
+  if(activeNote){
+    activeNote.classList.remove('active');
+  }
+  event.target.classList.add('active')
 
-      elements.addEventListener('click',(event)=> {
-           const activeNote = event.target.parentNode.parentNode.getElementsByClassName('active')[0];
-           activeNote.classList.remove('active');
-          event.target.parentNode.classList.add("active");
-        });
-}
+  // now bassed on the project let's
+  const activeProject = projectsList.getElementsByClassName('active')[0];
+
+  if(activeProject){
+      const projectIndex = new Number(activeProject.getAttribute('data-key'));
+      const noteIndex = new Number(event.target.getAttribute('data-key'));
+      const selectedProject = projectsData[projectIndex];
+
+      const selectedNote = selectedProject.notes[noteIndex];
+
+      displayNote(selectedNote);
+
+  }
+});
 
 
+const noteSaveHandler = (event) => {
+  const name = document.getElementById('note-name').value;
+  const description  = document.getElementById('description-area').value;
+  const dueDate = document.getElementById('due-date').value;
+  const priority = document.getElementById('note-priority').value;
 
-document.getElementById('saveNote').addEventListener('click', (event)=>{
+  const newNote = new Note(name,description,dueDate,priority);
 
-  const name = document.getElementById('note-name');
-  const description  = document.getElementById('description-area');
-  const dueDate = document.getElementById('due-date');
-  const priority = document.getElementById('note-priority');
+  // TODO: create a display note to display note details
+  // on the details container when the user selects a note
 
-  const note = new Node(name,description,dueDate,priority);
-  //display it on the details panel
-  displayNote(note)
-  addNote(name.value);
 
-  //Push it on the correct
+  //Push it on the correct array element
+    const activeProject = document.getElementById('projects-list')
+    .getElementsByClassName('active')[0];
+
+   if(activeProject){
+     const index = activeProject.getAttribute('data-key');
+     addNote(name);
+     projectsData[new Number(index)].notes.push(newNote);
+   } else {
+     alert('You should select a project');
+   }
 
 
 // Cleanup
-  name.value='';
-  description.value = '';
-});
+  // name ='';
+  // description = '';
+  // dueDate = '';
+  // priority = '';
+}
+
+document.getElementById('saveNote').addEventListener('click', noteSaveHandler);
+
+
+
 
 
 export { init };

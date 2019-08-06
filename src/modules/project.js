@@ -1,7 +1,7 @@
 class Project {
     constructor(name) {
       this.name = name;
-      this.notes = [];
+      this.notes = new Array();
     }
 }
 export { Project };

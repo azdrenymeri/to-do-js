@@ -1,4 +1,4 @@
-export default class Note {
+class Note {
     constructor(title, description , dueDate, priority) {
       this.title = title;
       this.description = description;
@@ -7,3 +7,4 @@ export default class Note {
     }
 
   }
+export { Note };
