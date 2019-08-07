@@ -3,11 +3,12 @@ import './../scss/app.scss';
 import { Project } from './project';
 import { Note } from './note';
 import { nav } from './header';
-import { projectsNode,addProject, renderProjects } from './projects-container';
-import { notesList, addNote, renderNotes } from './notes-container';
-import { noteDetails,displayNote } from './details-container';
+import { projectsNode,addProject, renderProjects,setActiveProject,
+  getActiveProjectIndex } from './projects-container';
+import { notesList, addNote, renderNotes,getActiveNoteIndex,setActiveNote }
+  from './notes-container';
+import { noteDetails,displayNoteDetails } from './details-container';
 import { loadComponents } from './main-container';
-
 
 // Loading the DOM elements
 loadComponents();
@@ -19,12 +20,12 @@ const detailsContainer = document.getElementById('details-container');
 
 // Data of the application
 const projectsData = [];
-
-
+1
 const init = () => {
   const np = new Project("Default");
   projectsData.push(np);
   addProject("First Project");
+
 }
 
 // listeners
@@ -33,40 +34,29 @@ const init = () => {
 document.getElementById('saveProject').addEventListener('click',(event) => {
   const name = document.getElementById('project-name');
   const newProject = new Project(name.value);
-
     // TODO: create a method that checks if this project name is already on the list
     projectsData.push(newProject);
     addProject(name.value);
     name.value = '';
-
 });
 
 // here is active button
 projectsList.addEventListener('click',(event) => {
-  const activeProject = event.target.parentNode.getElementsByClassName('active')[0];
-  if(activeProject){
-    activeProject.classList.remove('active')
-  }
-
-  event.target.classList.add('active');
   const selectedIndex = new Number(event.target.getAttribute('data-key'));
-  const selectedProject = projectsData[selectedIndex];
-    //rendering the notes
-
-    renderNotes(selectedProject);
+    setActiveProject(selectedIndex);
+    renderNotes(projectsData[selectedIndex]);
 });
 // delete
 document.getElementById('delete-note-btn').addEventListener('click',(event) => {
-  const activeNote = notes.getElementsByClassName('active')[0];
-  const i =activeNote.getAttribute('data-key');
-  const activeProject = projectsList.getElementsByClassName('active')[0];
-  const index = activeProject.getAttribute('data-key');
+  const index = getActiveProjectIndex();
   projectsData[index].notes.splice(i,1);
-  renderNotes(projectsData[index]);
+  renderNotes(projectsData);
 
 });
+
 // update
 document.getElementById('update-note-btn').addEventListener('click',(event) => {
+
   const activeNote = notes.getElementsByClassName('active')[0];
   const i =activeNote.getAttribute('data-key');
   const activeProject = projectsList.getElementsByClassName('active')[0];
@@ -81,39 +71,35 @@ document.getElementById('update-note-btn').addEventListener('click',(event) => {
   projectsData[index].notes[i]=changenote;
   renderNotes(projectsData[index]);
 
-
 });
 
 //deleting project
 document.getElementById('deleteProject').addEventListener('click',(event) => {
-  const activeProject = projectsList.getElementsByClassName('active')[0];
-  const index = activeProject.getAttribute('data-key');
-  console.log('hello there')
-  projectsData.splice(index,1);
+  const index = getActiveProjectIndex();
+    if(projectsData[index].notes.length > 0){
+      if(confirm("Your notes under this project will be lost. Are your sure ?")){
+        projectsData.splice(index,1);
+      }
+    }else{
+      projectsData.splice(index,1);
+    }
   renderProjects(projectsData);
-
+  if(projectsData.length > 0){
+    renderNotes(projectsData[getActiveProjectIndex()]);
+  }
 });
 
 
 notes.addEventListener('click',(event)=> {
-  const activeNote = event.target.parentNode.getElementsByClassName('active')[0];
-  if(activeNote){
-    activeNote.classList.remove('active');
-  }
-  event.target.classList.add('active')
+  setActiveNote(event.target.getAttribute('data-key'))
 
-  // now bassed on the project let's
-  const activeProject = projectsList.getElementsByClassName('active')[0];
+  const activeProject = projectsData[getActiveProjectIndex()];
 
   if(activeProject){
-      const projectIndex = new Number(activeProject.getAttribute('data-key'));
-      const noteIndex = new Number(event.target.getAttribute('data-key'));
-      const selectedProject = projectsData[projectIndex];
-
-      const selectedNote = selectedProject.notes[noteIndex];
-
-      displayNote(selectedNote);
-
+      const selectedNote = activeProject.notes[getActiveNoteIndex()];
+      displayNoteDetails(selectedNote);
+  } else {
+    alert('Something went wrong ! ');
   }
 });
 
@@ -131,19 +117,15 @@ document.getElementById('saveNote').addEventListener('click',(event)=>{
 
 
   //Push it on the correct array element
-    const activeProject = document.getElementById('projects-list')
-    .getElementsByClassName('active')[0];
+    const activeProject = projectsData[getActiveProjectIndex()];
 
    if(activeProject){
-     const index = activeProject.getAttribute('data-key');
      addNote(name);
-     projectsData[new Number(index)].notes.push(newNote);
+     activeProject.notes.push(newNote);
    } else {
      alert('You should select a project');
    }
 });
-
-
 
 
 

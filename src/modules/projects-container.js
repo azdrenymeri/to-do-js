@@ -60,9 +60,9 @@ const addProject = (name) => {
 
 const renderProjects = (projects) => {
   const projectsNode = document.getElementById('projects-list');
+
   //clean other projects
   projectsNode.innerHTML = '';
-
     for (const i in projects) {
       const projectList = document.getElementById('projects-list');
       const countNodes = projectList.childElementCount;
@@ -81,4 +81,19 @@ const renderProjects = (projects) => {
 
 }
 
-export { projectsNode, addProject, renderProjects };
+const getActiveProjectIndex = () => {
+  const index = document.getElementById('projects-list')
+  .getElementsByClassName('active')[0].getAttribute('data-key');
+  console.log(index);
+  return new Number(index);
+}
+
+const setActiveProject = (index = 0) => {
+  const allProjects = document.getElementById('projects-list');
+  for(let child of allProjects.children){
+      child.classList.remove('active');
+  }
+  allProjects.children[index].classList.add('active');
+}
+export { projectsNode, addProject, renderProjects, setActiveProject,
+         getActiveProjectIndex };

@@ -10,7 +10,7 @@ notesList.innerHTML = `
               </div>
           </div>
           </div>
-          <ul class="list-group noselect" id="notes-list" >
+          <ul class="list-group noselect ul-item" id="notes-list" >
           <!-- <li class="list-group-item note-item" data-key="0">Sample Note</li> -->
         </ul>
         <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -77,19 +77,31 @@ const renderNotes = (project) => {
   //clean other notes
   noteList.innerHTML = '';
 
+  for (const note in project.notes) {
 
-    for (const note in project.notes) {
-
-      const countNodes = noteList.childElementCount;
-      const newNoteItem = document.createElement('li');
-      newNoteItem.classList.add('list-group-item','note-item');
-      newNoteItem.setAttribute('data-key', countNodes);
-      newNoteItem.innerText = project.notes[note].title;
-      noteList.appendChild(newNoteItem);
-    }
-
-
-
+    const countNodes = noteList.childElementCount;
+    const newNoteItem = document.createElement('li');
+    newNoteItem.classList.add('list-group-item','note-item');
+    newNoteItem.setAttribute('data-key', countNodes);
+    newNoteItem.innerText = project.notes[note].title;
+    noteList.appendChild(newNoteItem);
+  }
 }
 
-  export { notesList, addNote,renderNotes };
+const getActiveNoteIndex = () => {
+  const index = document.getElementById('notes-list')
+  .getElementsByClassName('active')[0].getAttribute('data-key');
+  return new Number(index);
+}
+
+const setActiveNote = (index = 0) =>{
+  const allNotes = document.getElementById('notes-list');
+  for(let note of allNotes.children){
+    note.classList.remove('active');
+  }
+  allNotes.children[index].classList.add('active');
+}
+
+
+
+export { notesList, addNote, renderNotes, getActiveNoteIndex, setActiveNote };

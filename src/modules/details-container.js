@@ -48,7 +48,7 @@ noteDetails.innerHTML = `
 
 `;
 
-const displayNote = (note) => {
+const displayNoteDetails = (note) => {
   document.getElementById('note-title').value = note.title;
   document.getElementById('note-description').value = note.description;
 
@@ -58,4 +58,4 @@ const displayNote = (note) => {
 
   // TODO: Bassed on the priority of the note set the color :default primary, warning or danger
 }
-export { noteDetails,displayNote };
+export { noteDetails,displayNoteDetails };
