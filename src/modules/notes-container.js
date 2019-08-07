@@ -6,7 +6,7 @@ notesList.innerHTML = `
               <p class="text-monospace"> Notes </p>
               </div>
               <div class= "col-md-3">
-              <button id= 'addNote' data-toggle="modal" data-target="#exampleModal2" class="btn btn-secondary btn-sm active" role="button" aria-pressed="true">Add</button>
+              <button id= 'addNote' data-toggle="modal" data-target="#exampleModal2" class="btn btn-info btn-sm" aria-pressed="true">Add</button>
               </div>
           </div>
           </div>
@@ -76,10 +76,10 @@ const renderNotes = (project) => {
   const noteList = document.getElementById('notes-list');
   //clean other notes
   noteList.innerHTML = '';
-    
+
 
     for (const note in project.notes) {
-      
+
       const countNodes = noteList.childElementCount;
       const newNoteItem = document.createElement('li');
       newNoteItem.classList.add('list-group-item','note-item');
@@ -87,8 +87,8 @@ const renderNotes = (project) => {
       newNoteItem.innerText = project.notes[note].title;
       noteList.appendChild(newNoteItem);
     }
-  
-  
+
+
 
 }
 

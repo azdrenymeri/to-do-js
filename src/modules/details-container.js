@@ -2,10 +2,11 @@
 const noteDetails = document.createElement('div');
 
 noteDetails.innerHTML = `
+<p class="text-monospace" >Details</p>
 <div class="card">
   <div class="card-header" >
   <input type="text" class="form-control" id="note-title"  placeholder="Title">
-    
+
   </div>
   <div class="card-body">
   <div >
@@ -43,8 +44,6 @@ noteDetails.innerHTML = `
     </div>
 
   </div>
-  
-  <a href="#" id="deleteProject" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Delete Project</a>
 </div>
 
 `;

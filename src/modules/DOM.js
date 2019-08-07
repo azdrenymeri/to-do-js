@@ -19,11 +19,12 @@ const detailsContainer = document.getElementById('details-container');
 
 // Data of the application
 const projectsData = [];
-const np = new Project("Default");
-projectsData.push(np);
-addProject("Default");
-const init = () => {
 
+
+const init = () => {
+  const np = new Project("Default");
+  projectsData.push(np);
+  addProject("First Project");
 }
 
 // listeners
@@ -46,12 +47,12 @@ projectsList.addEventListener('click',(event) => {
   if(activeProject){
     activeProject.classList.remove('active')
   }
-  
+
   event.target.classList.add('active');
   const selectedIndex = new Number(event.target.getAttribute('data-key'));
   const selectedProject = projectsData[selectedIndex];
     //rendering the notes
-    
+
     renderNotes(selectedProject);
 });
 // delete
@@ -71,15 +72,15 @@ document.getElementById('update-note-btn').addEventListener('click',(event) => {
   const activeProject = projectsList.getElementsByClassName('active')[0];
   const index = activeProject.getAttribute('data-key');
   const changenote= projectsData[index].notes[i]
-  
+
   changenote.title = document.getElementById('note-title').value;
   changenote.description  = document.getElementById('note-description').value;
   changenote.dueDate = document.getElementById('due-date-details').value;
   changenote.priority = document.getElementById('note-priority-details').value;
-  
+
   projectsData[index].notes[i]=changenote;
   renderNotes(projectsData[index]);
-  
+
 
 });
 
