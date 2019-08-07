@@ -84,7 +84,6 @@ const renderProjects = (projects) => {
 const getActiveProjectIndex = () => {
   const index = document.getElementById('projects-list')
   .getElementsByClassName('active')[0].getAttribute('data-key');
-  console.log(index);
   return new Number(index);
 }
 
