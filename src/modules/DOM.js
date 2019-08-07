@@ -61,7 +61,7 @@ document.getElementById('delete-note-btn').addEventListener('click',(event) => {
   const activeProject = projectsList.getElementsByClassName('active')[0];
   const index = activeProject.getAttribute('data-key');
   projectsData[index].notes.splice(i,1);
-  renderNotes(activeProject);
+  renderNotes(projectsData[index]);
 
 });
 // update
