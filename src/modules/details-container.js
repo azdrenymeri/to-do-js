@@ -1,5 +1,4 @@
-
-const noteDetails = document.createElement('div');
+const noteDetails = document.createElement("div");
 
 noteDetails.innerHTML = `
 <div id="hidden" >
@@ -92,16 +91,11 @@ noteDetails.innerHTML = `
   </div>
 `;
 
-const displayNoteDetails = (note) => {
-  document.getElementById('note-title').innerHTML= note.title;
-  document.getElementById('note-description').innerHTML = note.description;
+const displayNoteDetails = note => {
+  document.getElementById("note-title").innerHTML = note.title;
+  document.getElementById("note-description").innerHTML = note.description;
+  document.getElementById("due-date-details").innerHTML = note.dueDate;
+  document.getElementById("note-priority-details").innerHTML = note.priority;
+};
 
-  //TODO you might need to change this thwo lines if we add different components
-  document.getElementById('due-date-details').innerHTML = note.dueDate;
-  document.getElementById('note-priority-details').innerHTML = note.priority;
-
-  // TODO: Bassed on the priority of the note set the color :default primary, warning or danger
-}
-
-
-export { noteDetails,displayNoteDetails };
+export { noteDetails, displayNoteDetails };

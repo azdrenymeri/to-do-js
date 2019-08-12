@@ -1,4 +1,3 @@
-
 const notesList = document.createElement("div");
 notesList.innerHTML = `
 <div class="row">
@@ -60,48 +59,45 @@ notesList.innerHTML = `
   </div>
 `;
 
-// both note and project need to be connected to their objects?
-const addNote = (name) => {
-    const noteList = document.getElementById('notes-list');
-    const countNodes = noteList.childElementCount;
-    const newNoteItem = document.createElement('li');
+const addNote = name => {
+  const noteList = document.getElementById("notes-list");
+  const countNodes = noteList.childElementCount;
+  const newNoteItem = document.createElement("li");
 
-    newNoteItem.classList.add('list-group-item','note-item');
-    newNoteItem.setAttribute('data-key', countNodes);
-    newNoteItem.innerText = name;
-    noteList.appendChild(newNoteItem);
-  };
+  newNoteItem.classList.add("list-group-item", "note-item");
+  newNoteItem.setAttribute("data-key", countNodes);
+  newNoteItem.innerText = name;
+  noteList.appendChild(newNoteItem);
+};
 
-const renderNotes = (project) => {
-  const noteList = document.getElementById('notes-list');
-  //clean other notes
-  noteList.innerHTML = '';
+const renderNotes = project => {
+  const noteList = document.getElementById("notes-list");
+  noteList.innerHTML = "";
 
   for (const note in project.notes) {
-
     const countNodes = noteList.childElementCount;
-    const newNoteItem = document.createElement('li');
-    newNoteItem.classList.add('list-group-item','note-item');
-    newNoteItem.setAttribute('data-key', countNodes);
+    const newNoteItem = document.createElement("li");
+    newNoteItem.classList.add("list-group-item", "note-item");
+    newNoteItem.setAttribute("data-key", countNodes);
     newNoteItem.innerText = project.notes[note].title;
     noteList.appendChild(newNoteItem);
   }
-}
+};
 
 const getActiveNoteIndex = () => {
-  const index = document.getElementById('notes-list')
-  .getElementsByClassName('active')[0].getAttribute('data-key');
+  const index = document
+    .getElementById("notes-list")
+    .getElementsByClassName("active")[0]
+    .getAttribute("data-key");
   return new Number(index);
-}
+};
 
-const setActiveNote = (index = 0) =>{
-  const allNotes = document.getElementById('notes-list');
-  for(let note of allNotes.children){
-    note.classList.remove('active');
+const setActiveNote = (index = 0) => {
+  const allNotes = document.getElementById("notes-list");
+  for (let note of allNotes.children) {
+    note.classList.remove("active");
   }
-  allNotes.children[index].classList.add('active');
-}
-
-
+  allNotes.children[index].classList.add("active");
+};
 
 export { notesList, addNote, renderNotes, getActiveNoteIndex, setActiveNote };

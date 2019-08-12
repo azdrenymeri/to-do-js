@@ -40,59 +40,61 @@ projectsNode.innerHTML = `
     </div>
   </div> `;
 
-const addProject = (name) => {
-
-  const projectList = document.getElementById('projects-list');
+const addProject = name => {
+  const projectList = document.getElementById("projects-list");
   const countNodes = projectList.childElementCount;
 
-  const newProjectItem = document.createElement('li');
-  newProjectItem.classList.add('list-group-item','project-item');
-  // we have only one project so set it to active
-  if(countNodes == 0){
-    newProjectItem.classList.add('active');
+  const newProjectItem = document.createElement("li");
+  newProjectItem.classList.add("list-group-item", "project-item");
+  if (countNodes == 0) {
+    newProjectItem.classList.add("active");
   }
 
-  newProjectItem.setAttribute('data-key', countNodes);
+  newProjectItem.setAttribute("data-key", countNodes);
   newProjectItem.innerText = name;
 
   projectList.appendChild(newProjectItem);
 };
 
-const renderProjects = (projects) => {
-  const projectsNode = document.getElementById('projects-list');
+const renderProjects = projects => {
+  const projectsNode = document.getElementById("projects-list");
 
-  //clean other projects
-  projectsNode.innerHTML = '';
-    for (const i in projects) {
-      const projectList = document.getElementById('projects-list');
-      const countNodes = projectList.childElementCount;
-      const countProjects = projectsNode.childElementCount;
-      const newProjectItem = document.createElement('li');
+  projectsNode.innerHTML = "";
+  for (const i in projects) {
+    const projectList = document.getElementById("projects-list");
+    const countNodes = projectList.childElementCount;
+    const countProjects = projectsNode.childElementCount;
+    const newProjectItem = document.createElement("li");
 
-      if(countNodes == 0){
-        newProjectItem.classList.add('active');
-      }
-      newProjectItem.classList.add('list-group-item','note-item');
-      newProjectItem.setAttribute('data-key', countProjects);
-      newProjectItem.innerText = projects[i].name;
-      projectsNode.appendChild(newProjectItem);
+    if (countNodes == 0) {
+      newProjectItem.classList.add("active");
     }
-
-
-}
+    newProjectItem.classList.add("list-group-item", "note-item");
+    newProjectItem.setAttribute("data-key", countProjects);
+    newProjectItem.innerText = projects[i].name;
+    projectsNode.appendChild(newProjectItem);
+  }
+};
 
 const getActiveProjectIndex = () => {
-  const index = document.getElementById('projects-list')
-  .getElementsByClassName('active')[0].getAttribute('data-key');
+  const index = document
+    .getElementById("projects-list")
+    .getElementsByClassName("active")[0]
+    .getAttribute("data-key");
   return new Number(index);
-}
+};
 
 const setActiveProject = (index = 0) => {
-  const allProjects = document.getElementById('projects-list');
-  for(let child of allProjects.children){
-      child.classList.remove('active');
+  const allProjects = document.getElementById("projects-list");
+  for (let child of allProjects.children) {
+    child.classList.remove("active");
   }
-  allProjects.children[index].classList.add('active');
-}
-export { projectsNode, addProject, renderProjects, setActiveProject,
-         getActiveProjectIndex };
+  allProjects.children[index].classList.add("active");
+};
+export {
+  projectsNode,
+  addProject,
+  renderProjects,
+  setActiveProject,
+  getActiveProjectIndex
+};
