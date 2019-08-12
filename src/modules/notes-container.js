@@ -3,7 +3,7 @@ const notesList = document.createElement("div");
 notesList.innerHTML = `
 <div class="row">
               <div class= "col-md-8">
-              <p class="text-monospace"> Notes </p>
+              <p class="text-monospace"> To-Do's </p>
               </div>
               <div class= "col-md-3">
               <button id= 'addNote' data-toggle="modal" data-target="#exampleModal2" class="btn btn-info btn-sm" aria-pressed="true">Add</button>
@@ -17,7 +17,7 @@ notesList.innerHTML = `
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Create note</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Create To-Do</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -25,8 +25,8 @@ notesList.innerHTML = `
         <div class="modal-body">
           <!-- title -->
           <div class="form-group">
-            <label for="note-name">Note</label>
-            <input type="text" class="form-control" id="note-name"  placeholder="Type your note">
+            <label for="note-name">Title</label>
+            <input type="text" class="form-control" id="note-name"  placeholder="Type your title">
           </div>
           <!-- description -->
           <div class="form-group">
@@ -53,7 +53,7 @@ notesList.innerHTML = `
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button id="saveNote" type="button" class="btn btn-primary" data-dismiss="modal">Create Note</button>
+          <button id="saveNote" type="button" class="btn btn-primary" data-dismiss="modal">Create To-Do</button>
         </div>
       </div>
     </div>

@@ -15,7 +15,7 @@ loadComponents();
 
 const projectsList = document.getElementById('projects-list');
 const notes = document.getElementById('notes-list');
-
+document.getElementById("hidden").style.visibility = "hidden";
 const detailsContainer = document.getElementById('details-container');
 
 // Data of the application
@@ -44,29 +44,58 @@ projectsList.addEventListener('click',(event) => {
   const selectedIndex = new Number(event.target.getAttribute('data-key'));
     setActiveProject(selectedIndex);
     renderNotes(projectsData[selectedIndex]);
+    document.getElementById("hidden").style.visibility = "hidden";
 });
 // delete
 document.getElementById('delete-note-btn').addEventListener('click',(event) => {
   const index = getActiveProjectIndex();
-  projectsData[index].notes.splice(i,1);
-  renderNotes(projectsData);
+  projectsData[index].notes.splice(getActiveNoteIndex(),1);
+  renderNotes(projectsData[index]);
+  document.getElementById("hidden").style.visibility = "hidden";
 
 });
 
 // update
-document.getElementById('update-note-btn').addEventListener('click',(event) => {
+document.getElementById('noteModal').addEventListener('click',(event) => {
 
-  const changenote= projectsData[getActiveProjectIndex()]
-  .notes[getActiveNoteIndex()];
+  const note= projectsData[getActiveProjectIndex()].notes[getActiveNoteIndex()];
+  // .notes[getActiveNoteIndex()];
+  // const changenote= projectsData[getActiveProjectIndex()]
+  // .notes[getActiveNoteIndex()];
 
-  changenote.title = document.getElementById('note-title').value;
-  changenote.description  = document.getElementById('note-description').value;
-  changenote.dueDate = document.getElementById('due-date-details').value;
-  changenote.priority = document.getElementById('note-priority-details').value;
+  // changenote.title = document.getElementById('note-title').value;
+  // changenote.description  = document.getElementById('note-description').value;
+  // changenote.dueDate = document.getElementById('due-date-details').value;
+  // changenote.priority = document.getElementById('note-priority-details').value;
 
-  projectsData[getActiveProjectIndex()].notes[getActiveNoteIndex()]=changenote;
+  // projectsData[getActiveProjectIndex()].notes[getActiveNoteIndex()]=changenote;
+  // renderNotes(projectsData[index]);
+
+  document.getElementById('note-title-update').value = note.title;
+  document.getElementById('note-description-update').value = note.description;
+
+  //TODO you might need to change this thwo lines if we add different components
+  document.getElementById('due-date-update').value = note.dueDate;
+  document.getElementById('note-priority-update').value = note.priority;
+  
+
+});
+
+document.getElementById('saveNoteUpdate').addEventListener('click',(event) => {
+  
+  const changenote= projectsData[getActiveProjectIndex()].notes[getActiveNoteIndex()];
+
+  changenote.title = document.getElementById('note-title-update').value;
+  changenote.description  = document.getElementById('note-description-update').value;
+  changenote.dueDate = document.getElementById('due-date-update').value;
+  changenote.priority = document.getElementById('note-priority-update').value;
+  
+  const index = getActiveProjectIndex();
   renderNotes(projectsData[index]);
-
+  document.getElementById("hidden").style.visibility = "hidden";
+  // setActiveNote(getActiveNoteIndex())
+  // const selectedNote = activeProject.notes[getActiveNoteIndex()];
+  // displayNoteDetails(selectedNote);
 });
 
 //deleting project
@@ -80,9 +109,8 @@ document.getElementById('deleteProject').addEventListener('click',(event) => {
       projectsData.splice(index,1);
     }
   renderProjects(projectsData);
-  if(projectsData.length > 0){
-    renderNotes(projectsData[getActiveProjectIndex()]);
-  }
+  renderNotes(projectsData[getActiveProjectIndex()]);
+  
 });
 
 
@@ -94,6 +122,7 @@ notes.addEventListener('click',(event)=> {
   if(activeProject){
       const selectedNote = activeProject.notes[getActiveNoteIndex()];
       displayNoteDetails(selectedNote);
+      document.getElementById("hidden").style.visibility = "visible";
   } else {
     alert('Something went wrong ! ');
   }
