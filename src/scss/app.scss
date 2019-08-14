@@ -1,0 +1,26 @@
+@import "~bootstrap/scss/bootstrap";
+
+.noselect {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+.project-item:hover{
+  background-color: #6c757d;
+  color: white;
+}
+.note-item:hover{
+  background-color: #6c757d;
+  color: white;
+}
+.p-item {
+  display: inline;
+}
+.panel-container {
+  margin-top: 2%;
+}
+.ul-item{
+  list-style-type: none;
+}
