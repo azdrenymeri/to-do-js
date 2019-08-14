@@ -118,6 +118,9 @@ document.getElementById("saveNote").addEventListener("click", event => {
   const description = document.getElementById("description-area").value;
   const dueDate = document.getElementById("due-date").value;
   const priority = document.getElementById("note-priority").value;
+  document.getElementById("note-name").value="";
+  document.getElementById("description-area").value="";
+  document.getElementById("due-date").value="";
 
   const newNote = new Note(name, description, dueDate, priority);
 
