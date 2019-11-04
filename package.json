@@ -5,12 +5,11 @@
   "description": "",
   "private": true,
   "scripts": {
-    "start": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
     "serve": "webpack --watch",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "start": "node server.js",
+  "heroku-postbuild": "webpack -p"
   },
   "author": "",
   "license": "ISC",
