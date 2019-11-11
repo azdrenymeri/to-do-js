@@ -2,7 +2,6 @@ import "bootstrap";
 import "./../scss/app.scss";
 import { Project } from "./project";
 import { Note } from "./note";
-import { nav } from "./header";
 import {
   projectsNode,
   addProject,
