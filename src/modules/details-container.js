@@ -2,7 +2,7 @@ const noteDetails = document.createElement("div");
 
 noteDetails.innerHTML = `
 <div id="hidden" >
-<p class="text-monospace" >Details</p>
+<p class="text-monospace text-monospace2" >Details</p>
 <div class="card">
   <div class="card-header" >
   <label  id="note-title"  placeholder="Title">
